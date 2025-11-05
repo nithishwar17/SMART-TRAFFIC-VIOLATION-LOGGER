@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🚦 Smart Traffic Violation Logger (Flask)
 
 ## 👤 Author
@@ -70,3 +71,6 @@ pip install -r requirements.txt
 
 # Run the app
 python app.py
+=======
+# SMART-TRAFFIC-VIOLATION-LOGGER
+>>>>>>> 68b6dd9bfbb593bbaa0ed9d21c685693a8c60ec4
