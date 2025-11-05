@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<h3 class="mb-3">Add New Violation</h3>
+
+<form action="/add" method="POST" class="border p-4 rounded shadow-sm bg-light">
+    <div class="mb-3">
+        <label>Vehicle Number</label>
+        <input type="text" name="vehicle_number" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label>Violation Type</label>
+        <input type="text" name="violation_type" class="form-control" required placeholder="e.g., No Helmet, Overspeeding">
+    </div>
+
+    <div class="mb-3">
+        <label>Location</label>
+        <input type="text" name="location" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label>Date</label>
+        <input type="date" name="date" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label>Fine Amount (₹)</label>
+        <input type="number" name="fine_amount" step="0.01" class="form-control" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Violation</button>
+</form>
+{% endblock %}

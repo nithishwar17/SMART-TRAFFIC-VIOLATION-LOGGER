@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+<h3 class="mb-3">Violation Records</h3>
+
+<form class="mb-3" method="get" action="/view">
+    <input type="text" name="search" class="form-control" placeholder="Search by vehicle number..." value="{{ request.args.get('search', '') }}">
+</form>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Vehicle</th>
+            <th>Type</th>
+            <th>Location</th>
+            <th>Date</th>
+            <th>Fine (₹)</th>
+            <th>Status</th>
+            <th>QR Code</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for v in violations %}
+        <tr>
+            <td>{{ v.id }}</td>
+            <td>{{ v.vehicle_number }}</td>
+            <td>{{ v.violation_type }}</td>
+            <td>{{ v.location }}</td>
+            <td>{{ v.date.strftime('%Y-%m-%d') }}</td>
+            <td>{{ v.fine_amount }}</td>
+            <td>
+                <span class="badge bg-{{ 'success' if v.status == 'Paid' else 'danger' }}">{{ v.status }}</span>
+            </td>
+            <td>
+               {% if v.qr_code_path %}
+    	 <img src="{{ url_for('static', filename=v.qr_code_path) }}" width="70">
+               {% endif %}
+
+            </td>
+            <td>
+                <a href="/update/{{ v.id }}" class="btn btn-sm btn-warning">Toggle</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

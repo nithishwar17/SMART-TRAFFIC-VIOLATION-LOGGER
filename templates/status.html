@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card shadow p-4">
+    <h4 class="mb-3 text-center">🚦 Traffic Violation Status</h4>
+
+    <p><strong>Vehicle Number:</strong> {{ v.vehicle_number }}</p>
+    <p><strong>Violation:</strong> {{ v.violation_type }}</p>
+    <p><strong>Location:</strong> {{ v.location }}</p>
+    <p><strong>Date:</strong> {{ v.date.strftime('%Y-%m-%d') }}</p>
+    <p><strong>Fine Amount:</strong> ₹{{ v.fine_amount }}</p>
+    <p><strong>Status:</strong>
+        <span class="badge bg-{{ 'success' if v.status == 'Paid' else 'danger' }}">{{ v.status }}</span>
+    </p>
+
+    {% if v.qr_code_path %}
+    <img src="{{ url_for('static', filename='qr_codes/' + v.qr_code_path.split('/')[-1]) }}" width="150" class="mt-3">
+    {% endif %}
+</div>
+{% endblock %}
